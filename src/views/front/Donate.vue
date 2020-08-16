@@ -1,0 +1,108 @@
+<template>
+  <div class="content">
+    <div class="desc-box">
+      <div class="desc-header-box">
+        <span>为什么我需要你的捐助？</span>
+      </div>
+      <div class="desc-header-body">
+        <span>
+        由于开源项目需要消耗大量时间及精力进行开发，然而不管是开发完成还是开发过程中，我个人是没有任何收入的，为了能促进
+我更好的进行开发，也为了能给大家带来更多更好玩、更实用的东西，在这里厚着脸皮想大家请求对我个人进行捐赠。捐赠不在
+多少，如果你觉我的项目对您有所帮组自己经济又允许那么您可以多捐赠，如果只是鼓励我，那您也可以请我喝一瓶肥宅快乐水
+对于捐赠后的您将获得DIY项目的优先购买权，以及相关资料。
+      </span>
+      </div>
+    </div>
+    <div class="pay-box">
+      <div>
+        <div class="pay-item-box">
+          <div class="item-header">
+            <span>微信捐助</span>
+            <span class="sub">微信支付捐助</span>
+          </div>
+          <img src="../../assets/weixin-pay.png" width="200"/>
+        </div>
+
+        <div class="pay-item-box margin">
+          <div class="item-header">
+            <span>支付宝捐助</span>
+            <span class="sub">支付宝捐助</span>
+          </div>
+          <img src="../../assets/alipay-pay.jpg" width="200" alt="支付宝捐助"/>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: 'Donate',
+  data () {
+    return {}
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+  .content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding-top: 40px;
+
+    .desc-box {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      .desc-header-box {
+        font-size: 36px;
+        font-weight: bold;
+        color: #757575;
+      }
+
+      .desc-header-body {
+        margin-top: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+    }
+
+    .pay-box {
+      width: 40%;
+      color: #9E9E9E;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+
+      .pay-item-box {
+        width: 200px;
+
+        .item-header {
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .sub {
+            font-size: 10px;
+            margin-left: 20px;
+          }
+        }
+
+      }
+
+      .margin {
+        margin-top: 60px;
+      }
+
+    }
+
+  }
+
+</style>

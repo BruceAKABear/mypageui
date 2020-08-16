@@ -1,27 +1,62 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import FrontLayout from '../views/FrontLayout'
+import Index from '../views/front/Index'
+import Donate from '../views/front/Donate'
+import Blog from '../views/front/Blog'
+import Video from '../views/front/Video'
+import Opensource from '../views/front/Opensource'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name: 'FrontLayout',
+    component: FrontLayout,
+    redirect: 'index',
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: Index,
+        meta: { title: '首页' }
+      },
+      {
+        path: 'blog',
+        name: 'Blog',
+        component: Blog,
+        meta: { title: '博客' }
+      },
+      {
+        path: 'video',
+        name: 'Video',
+        component: Video,
+        meta: { title: '视频' }
+      }, {
+        path: 'opensource',
+        name: 'Opensource',
+        component: Opensource,
+        meta: { title: '开源' }
+      },
+      {
+        path: 'donate',
+        name: 'Donate',
+        component: Donate,
+        meta: { title: '捐助' }
+      }
+    ]
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = '大熊实验室-' + to.meta.title
+  }
+  next()
 })
 
 export default router
