@@ -38,7 +38,8 @@ export default {
     }
   },
   created () {
-    this.activePath = window.sessionStorage.getItem('activePath')
+    const x = window.sessionStorage.getItem('activePath')
+    this.activePath = x === '' ? 'index' : x
   }
 }
 </script>
