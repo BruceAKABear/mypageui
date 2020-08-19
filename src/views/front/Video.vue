@@ -1,7 +1,9 @@
 <template>
   <el-container>
     <el-main>
-      <div class="video-box"></div>
+      <div class="video-box">
+        <iframe src="//player.bilibili.com/player.html?aid=795922919&bvid=BV1FC4y1a72Q&cid=199229032&page=1" class="iframe-style"> </iframe>
+      </div>
       <div class="video-message-box"></div>
     </el-main>
     <el-aside width="400px">
@@ -78,8 +80,13 @@ export default {
 
       .video-box {
         width: 100%;
-        height: 400px;
+        height: 500px;
         background-color: #757575;
+
+        .iframe-style{
+          width: 100%;
+          height: 500px;
+        }
       }
 
       .video-message-box {
