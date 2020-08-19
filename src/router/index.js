@@ -15,6 +15,7 @@ const routes = [
     name: 'FrontLayout',
     component: FrontLayout,
     redirect: 'index',
+    meta: { title: '大熊实验室' },
     children: [
       {
         path: 'index',
