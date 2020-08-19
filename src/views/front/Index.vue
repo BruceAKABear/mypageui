@@ -86,13 +86,15 @@ export default {
   .content {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 
     .background-img {
       height: 100%;
       width: 100%;
       background-size: 100% auto;
       background-repeat: no-repeat;
-      filter: blur(2px);
+      filter: blur(5px);
+      transform: scale(1.1);
     }
 
   }
