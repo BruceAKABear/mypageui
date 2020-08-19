@@ -5,17 +5,24 @@
       <div class="video-message-box"></div>
     </el-main>
     <el-aside width="400px">
-      <div class="video-item" v-for="video in videoList" :key="video.id">
-        <el-image
-          style="width: 100px; height: 100px"
-          :src="video.headPic"
-          fit="fit">
-        </el-image>
-        <div class="video-desc-box">
-
+      <el-card shadow="always">
+        <div class="list-header">
+          <span>视频列表</span>
         </div>
-      </div>
-      侧边
+
+        <div class="video-item" v-for="video in videoList" :key="video.id">
+          <el-image
+            style="width: 80px; height: 80px"
+            :src="video.headPic"
+            fit="fit">
+          </el-image>
+          <div class="video-desc-box">
+            <div>{{video.title}}</div>
+            <div class="desc-time">{{video.createTime}}</div>
+          </div>
+        </div>
+      </el-card>
+
     </el-aside>
   </el-container>
 </template>
@@ -28,7 +35,33 @@ export default {
       videoList: [
         {
           id: '1',
-          headPic: 'abc'
+          headPic: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          title: '测试视频标题122121212',
+          createTime: '2020-10-10 12:11'
+        },
+        {
+          id: '1',
+          headPic: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          title: '测试视频标题122121212',
+          createTime: '2020-10-10 12:11'
+        },
+        {
+          id: '1',
+          headPic: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          title: '测试视频标题122121212',
+          createTime: '2020-10-10 12:11'
+        },
+        {
+          id: '1',
+          headPic: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          title: '测试视频标题122121212',
+          createTime: '2020-10-10 12:11'
+        },
+        {
+          id: '1',
+          headPic: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          title: '测试视频标题122121212',
+          createTime: '2020-10-10 12:11'
         }
       ]
     }
@@ -56,7 +89,42 @@ export default {
         height: 100px;
       }
     }
-    .el-aside{
+
+    .el-aside {
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+
+      .el-card {
+        .list-header {
+          font-size: 20px;
+          font-weight: bold;
+          color: #9E9E9E;
+          margin-bottom: 20px;
+        }
+
+        .video-item {
+          height: 80px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+
+          .video-desc-box {
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #757575;
+
+            .desc-time {
+              font-size: 14px;
+              color: #999999;
+              margin-top: 20px;
+            }
+
+          }
+
+        }
+      }
 
     }
   }

@@ -9,7 +9,7 @@
         active-text-color="#ffd04b"
         :router="true"
       >
-        <el-menu-item  class="logo-box">
+        <el-menu-item class="logo-box">
           <el-avatar shape="square" :size="50" :src="logoUrl"></el-avatar>
         </el-menu-item>
         <el-menu-item index="index" @click="handleSelect('index')">主页</el-menu-item>
@@ -57,8 +57,13 @@ export default {
 
       .el-menu {
         border-bottom: 0;
-        .logo-box{
+
+        .logo-box {
           margin-right: 20px;
+        }
+
+        .el-menu {
+          border-right: none;
         }
       }
 

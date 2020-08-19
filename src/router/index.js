@@ -38,7 +38,7 @@ const routes = [
         path: 'opensource',
         name: 'Opensource',
         component: Opensource,
-        meta: { title: '开源' }
+        meta: { title: '开源项目' }
       },
       {
         path: 'donate',
