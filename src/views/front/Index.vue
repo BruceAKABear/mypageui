@@ -30,7 +30,6 @@ export default {
     }
   },
   methods: {
-
     doSearch () {
       if (this.keyword.trim() !== '') {
         this.$message.success('嗯？')
@@ -55,13 +54,17 @@ export default {
       const date = new Date()
       const hours = date.getHours()
       const minutes = date.getMinutes()
-      this.time = hours + ':' + minutes
+      const realH = hours < 10 ? '0' + hours : hours
+      const realM = minutes < 10 ? '0' + minutes : minutes
+      this.time = realH + ':' + realM
       var that = this
       this.timmer = setInterval(() => {
         const date = new Date()
         const hours = date.getHours()
         const minutes = date.getMinutes()
-        that.time = hours + ':' + minutes
+        const realH = hours < 10 ? '0' + hours : hours
+        const realM = minutes < 10 ? '0' + minutes : minutes
+        that.time = realH + ':' + realM
       }, 1000)
     }
   },

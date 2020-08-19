@@ -9,6 +9,9 @@
         active-text-color="#ffd04b"
         :router="true"
       >
+        <el-menu-item  class="logo-box">
+          <el-avatar shape="square" :size="50" :src="logoUrl"></el-avatar>
+        </el-menu-item>
         <el-menu-item index="index" @click="handleSelect('index')">主页</el-menu-item>
         <el-menu-item index="blog" @click="handleSelect('blog')">博客</el-menu-item>
         <el-menu-item index="video" @click="handleSelect('video')">视频</el-menu-item>
@@ -27,7 +30,8 @@ export default {
   name: 'FrontLayout',
   data () {
     return {
-      activePath: ''
+      activePath: '',
+      logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
     }
   },
   methods: {
@@ -53,6 +57,9 @@ export default {
 
       .el-menu {
         border-bottom: 0;
+        .logo-box{
+          margin-right: 20px;
+        }
       }
 
     }
