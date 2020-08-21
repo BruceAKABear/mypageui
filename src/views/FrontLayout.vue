@@ -18,7 +18,7 @@
         <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
         <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
       </el-menu>
-      <div class="header-search-box" v-show="activePath!=='index'">
+      <div class="header-search-box" v-show="activePath!=='index'&&activePath!=='donate'">
         <el-input placeholder="请输入内容" v-model="seachKey"></el-input>
         <el-button type="primary" @click="doSeach">搜索</el-button>
       </div>
