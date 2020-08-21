@@ -5,14 +5,26 @@
         <iframe src="//player.bilibili.com/player.html?aid=795922919&bvid=BV1FC4y1a72Q&cid=199229032&page=1"
                 class="iframe-style"></iframe>
       </div>
-      <div class="video-message-box"></div>
+      <div class="video-message-box">
+        <span>万能有线键盘转无线键盘转换器</span>
+        <div class="message-detail">
+          <span>10000次观看.2020年10月10日</span>
+          <div class="detail-like">
+            <i class="el-icon-star-on" style="color: red">1000</i>
+            <i class="el-icon-edit">100</i>
+          </div>
+        </div>
+        <el-divider></el-divider>
+      </div>
+      <div class="comment-box">
+        <span>评论</span>
+      </div>
     </el-main>
     <el-aside width="400px">
       <el-card shadow="always">
         <div class="list-header">
           <span>视频列表</span>
         </div>
-
         <div class="video-item" v-for="video in videoList" :key="video.id">
           <el-image
             style="width: 80px; height: 80px"
@@ -23,6 +35,14 @@
             <div>{{video.title}}</div>
             <div class="desc-time">{{video.createTime}}</div>
           </div>
+        </div>
+
+        <div class="pagination-box">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="50">
+          </el-pagination>
         </div>
       </el-card>
 
@@ -92,9 +112,33 @@ export default {
 
       .video-message-box {
         width: 100%;
-        margin-top: 40px;
-        background-color: aqua;
+        margin-top: 20px;
         height: 100px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #999999;
+
+        .message-detail {
+          margin-top: 10px;
+          font-size: 15px;
+          display: flex;
+          justify-content: space-between;
+
+          .detail-like {
+            align-items: center;
+
+            .i {
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+
+      .comment-box {
+        width: 100%;
+        color: #999999;
+        font-size: 20px;
+
       }
     }
 
@@ -131,6 +175,12 @@ export default {
 
           }
 
+        }
+
+        .pagination-box {
+          width: 100%;
+          display: flex;
+          justify-content: center;
         }
       }
 
