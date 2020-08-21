@@ -136,6 +136,15 @@ export default {
       display: flex;
       justify-content: center;
       text-align: center;
+
+      .el-button {
+        border-left: 0;
+       margin-left: 5px;
+        width: 120px;
+      }
+      .el-input{
+        border-radius: 4px;
+      }
     }
   }
 
