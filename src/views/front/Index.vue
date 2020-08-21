@@ -10,7 +10,7 @@
         <span class="index-time-time">{{time}}</span>
       </div>
       <div class="index-search-box">
-        <el-input v-model="keyword" placeholder="请输入内容" clearable></el-input>
+        <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"></el-input>
         <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
       </div>
     </div>
