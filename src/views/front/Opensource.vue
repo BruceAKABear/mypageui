@@ -54,10 +54,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .el-container{
-    .el-aside{
+  .el-container {
+    .el-aside {
       height: 100%;
-      .el-menu{
+
+      .el-menu {
         height: 100%;
       }
     }

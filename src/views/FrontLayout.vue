@@ -18,6 +18,10 @@
         <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
         <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
       </el-menu>
+      <div class="header-search-box" v-show="activePath!=='index'">
+        <el-input placeholder="请输入内容" v-model="seachKey"></el-input>
+        <el-button type="primary" @click="doSeach">搜索</el-button>
+      </div>
     </el-header>
     <el-main>
       <router-view/>
@@ -31,7 +35,8 @@ export default {
   data () {
     return {
       activePath: '',
-      logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      seachKey: ''
     }
   },
   methods: {
@@ -39,11 +44,14 @@ export default {
       console.log(ac)
       this.activePath = ac
       window.sessionStorage.setItem('activePath', ac)
+    },
+    doSeach () {
+      this.$message.info('en?')
     }
   },
   created () {
     const x = window.sessionStorage.getItem('activePath')
-    this.activePath = x == null ? 'index' : x
+    this.activePath = (x == null ? 'index' : x)
   }
 }
 </script>
@@ -54,6 +62,9 @@ export default {
 
     .el-header {
       padding: 0;
+      background-color: #545c64;
+      display: flex;
+      justify-content: space-between;
 
       .el-menu {
         border-bottom: 0;
@@ -64,9 +75,20 @@ export default {
 
         .el-menu {
           border-right: none;
+
         }
       }
 
+      .header-search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 20px;
+
+        .el-button {
+          margin-left: 5px;
+        }
+      }
     }
 
     .el-main {
