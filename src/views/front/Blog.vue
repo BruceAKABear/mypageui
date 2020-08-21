@@ -16,17 +16,18 @@
       <!--文章导航-->
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>博客</el-breadcrumb-item>
-        <el-breadcrumb-item>Spring中bean的生命周期是什么</el-breadcrumb-item>
+        <el-breadcrumb-item>{{article.title}}</el-breadcrumb-item>
       </el-breadcrumb>
 
       <div class="article-box">
         <div class="article-title-box">
           <span>
-            Spring中bean的生命周期是什么
+            {{article.title}}
           </span>
           <div class="title-info-box">
-            <span>邓艺</span>
-            <span>2020-10-10 10:10</span>
+            <span>{{article.author}}</span>
+            <span>{{article.updateTime}}</span>
+            <i class="el-icon-star-on" style="color: red">{{article.favorite}}</i>
           </div>
         </div>
       </div>
@@ -39,7 +40,14 @@
 export default {
   name: 'Blog',
   data () {
-    return {}
+    return {
+      article: {
+        title: 'Spring中bean的生命周期是什么',
+        author: '邓艺',
+        updateTime: '2020-10-10 10:10',
+        favorite: 1000
+      }
+    }
   }
 }
 </script>
