@@ -6,6 +6,10 @@ import Donate from '../views/front/Donate'
 import Blog from '../views/front/Blog'
 import Video from '../views/front/Video'
 import Opensource from '../views/front/Opensource'
+import BackLayout from '../views/BackLayout'
+import Dashboard from '../views/back/Dashboard'
+import Write from '../views/back/Write'
+import System from '../views/back/System'
 
 Vue.use(VueRouter)
 
@@ -45,6 +49,33 @@ const routes = [
         name: 'Donate',
         component: Donate,
         meta: { title: '捐助' }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    name: 'BackLayout',
+    component: BackLayout,
+    redirect: 'admin/dashboard',
+    meta: { title: '大熊实验室' },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+        meta: { title: '控制台' }
+      },
+      {
+        path: 'write',
+        name: 'Write',
+        component: Write,
+        meta: { title: '写作' }
+      },
+      {
+        path: 'system',
+        name: 'System',
+        component: System,
+        meta: { title: '系统设置' }
       }
     ]
   }
