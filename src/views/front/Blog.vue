@@ -7,7 +7,7 @@
           <span>{{ article.title }}</span>
         </div>
         <div class="article-item-detail">
-          <span>时间:{{ article.updateTime }}</span>
+          <span>{{ article.updateTime }}</span>
           <span>{{ article.author }}</span>
         </div>
       </el-card>
@@ -56,6 +56,32 @@ export default {
         favorite: 1000
       },
       articleList: [
+        {
+          title: 'Spring中bean的生命周期是什么',
+          author: '大熊',
+          updateTime: '2020-10-10 10:10',
+          favorite: 1000
+        }, {
+          title: 'Spring中bean的生命周期是什么',
+          author: '邓艺',
+          updateTime: '2020-10-10 10:10',
+          favorite: 1000
+        }, {
+          title: 'Spring中bean的生命周期是什么',
+          author: '邓艺',
+          updateTime: '2020-10-10 10:10',
+          favorite: 1000
+        }, {
+          title: 'Spring中bean的生命周期是什么',
+          author: '邓艺',
+          updateTime: '2020-10-10 10:10',
+          favorite: 1000
+        }, {
+          title: 'Spring中bean的生命周期是什么',
+          author: '邓艺',
+          updateTime: '2020-10-10 10:10',
+          favorite: 1000
+        },
         {
           title: 'Spring中bean的生命周期是什么',
           author: '大熊',

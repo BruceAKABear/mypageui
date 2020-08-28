@@ -59,16 +59,16 @@
     </el-aside>
     <!--main-->
     <el-main>
-      <div class="main-header">
+      <el-card class="main-header">
         <i class="el-icon-s-fold"></i>
         <div class="admin-info-box">
-          用户名
+          <i class="el-icon-s-fold"></i>
         </div>
-      </div>
+      </el-card>
       <el-card class="main-real-box">
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item>管理后台</el-breadcrumb-item>
-          <el-breadcrumb-item>{{activeName}}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ activeName }}</el-breadcrumb-item>
         </el-breadcrumb>
         <router-view></router-view>
       </el-card>
@@ -120,44 +120,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .el-container {
-    height: 100%;
+.el-container {
+  height: 100%;
 
-    .el-aside {
-      background-color: #545c64;
-      .meub-header {
-        height: 50px;
-        display: flex;
-        text-align: center;
-      }
+  .el-aside {
+    background-color: #545c64;
 
-      .el-menu {
-        border: none;
-      }
+    .meub-header {
+      height: 50px;
+      display: flex;
+      text-align: center;
     }
 
-    .el-main {
-      padding: 0;
+    .el-menu {
+      border: none;
+    }
+  }
 
-      .main-header {
-        width: 100%;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        font-size: 30px;
-        color: #999999;
-        justify-content: space-between;
+  .el-main {
+    padding: 0;
+
+    .main-header {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      font-size: 30px;
+      color: #999999;
+      justify-content: space-between;
+    }
+
+    .main-real-box {
+      margin: 10px;
+
+      .el-breadcrumb {
+        margin-bottom: 10px;
       }
-
-      .main-real-box {
-        margin: 10px;
-        .el-breadcrumb{
-          margin-bottom: 10px;
-        }
-      }
-
     }
 
   }
+
+}
 
 </style>

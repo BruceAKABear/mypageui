@@ -102,7 +102,6 @@ export default {
       .video-box {
         width: 100%;
         height: 500px;
-        background-color: #757575;
 
         .iframe-style {
           width: 100%;
@@ -116,7 +115,6 @@ export default {
         height: 100px;
         font-size: 20px;
         font-weight: bold;
-        color: #999999;
 
         .message-detail {
           margin-top: 10px;

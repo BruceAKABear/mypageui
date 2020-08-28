@@ -38,10 +38,8 @@ instance.interceptors.response.use(
         Message.error(message)
         return Promise.reject(response)
       }
-      // return response
-    } else {
-      return response
     }
+    return response.data
   },
   error => {
     console.log('err' + error) // for debug
