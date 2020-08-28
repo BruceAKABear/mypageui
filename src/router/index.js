@@ -10,6 +10,8 @@ import BackLayout from '../views/BackLayout'
 import Dashboard from '../views/back/Dashboard'
 import Write from '../views/back/Write'
 import System from '../views/back/System'
+import Login from '@/views/Login'
+import { getToken } from '@/utils/auth'
 
 Vue.use(VueRouter)
 
@@ -78,6 +80,12 @@ const routes = [
         meta: { title: '系统设置' }
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: { title: '后台登录' }
   }
 ]
 
@@ -85,10 +93,18 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
+  if (to.fullPath.indexOf('/admin') !== -1) {
+    // 访问后台，校验token
+    if (getToken() == null || getToken() === '') {
+      console.log(getToken())
+      // 没有token跳转登录页
+      next('/login')
+    }
+  }
+  next()
   if (to.meta.title) {
     document.title = '大熊实验室-' + to.meta.title
   }
-  next()
 })
 
 export default router
