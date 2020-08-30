@@ -9,6 +9,9 @@
        {{whyINeed}}
       </span>
       </div>
+      <div class="opensource-project-info">
+        <span>开源项目进度</span>
+      </div>
     </div>
     <div class="pay-box">
       <div>

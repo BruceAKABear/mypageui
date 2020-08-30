@@ -2,7 +2,8 @@
   <el-container>
     <!--侧边-->
     <el-aside width="350px">
-      <el-card shadow="hover" v-for="article in articleList " :key="article.id" :body-style="{ padding: '8px' }">
+      <el-card shadow="hover" v-for="article in pageData.records " :key="article.id" :body-style="{ padding: '8px' }"
+               @click.native="doShowDetail(article.id)">
         <div class="article-item-header">
           <span>{{ article.title }}</span>
         </div>
@@ -12,11 +13,13 @@
         </div>
       </el-card>
       <!--分页-->
-      <div class="pagination-box">
+      <div class="pagination-box" v-if="pageData.total>10">
         <el-pagination
           background
           layout="prev, pager, next"
-          :total="50">
+          :total="pageData.total"
+          @current-change="pageChange"
+        >
         </el-pagination>
       </div>
     </el-aside>
@@ -24,18 +27,19 @@
       <!--文章导航-->
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>博客</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ article.title }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ topArticle.title }}</el-breadcrumb-item>
       </el-breadcrumb>
 
       <div class="article-box">
         <div class="article-title-box">
           <span>
-            {{ article.title }}
+            {{ topArticle.title }}
           </span>
           <div class="title-info-box">
-            <span>{{ article.author }}</span>
-            <span>{{ article.updateTime }}</span>
-            <i class="el-icon-star-on" style="color: red">{{ article.favorite }}</i>
+            <span>{{ topArticle.author }}</span>
+            <span>{{ topArticle.updateTime }}</span>
+            <i class="el-icon-star-on" style="color: red">{{ topArticle.likeCount }}</i>
+            <i class="el-icon-star-on" style="color: red">{{ topArticle.viewCount }}</i>
           </div>
         </div>
       </div>
@@ -45,71 +49,48 @@
 </template>
 
 <script>
+
+import { page, getTop, getById } from '@/api/article'
+
 export default {
   name: 'Blog',
   data () {
     return {
-      article: {
-        title: 'Spring中bean的生命周期是什么',
-        author: '邓艺',
-        updateTime: '2020-10-10 10:10',
-        favorite: 1000
+      pagequeryData: {
+        pageNumber: 1,
+        pageSize: 10
       },
-      articleList: [
-        {
-          title: 'Spring中bean的生命周期是什么',
-          author: '大熊',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        },
-        {
-          title: 'Spring中bean的生命周期是什么',
-          author: '大熊',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }, {
-          title: 'Spring中bean的生命周期是什么',
-          author: '邓艺',
-          updateTime: '2020-10-10 10:10',
-          favorite: 1000
-        }
-      ]
+      pageData: {},
+      topArticle: {}
     }
+  },
+  methods: {
+    pageQuery () {
+      page(this.pagequeryData).then(res => {
+        this.pageData = res.data
+      })
+    },
+    pageChange (index) {
+      this.pagequeryData.pageNumber = index
+      this.pageQuery()
+    },
+    queryTopArticle () {
+      getTop().then(res => {
+        this.topArticle = res.data
+      })
+    },
+    doShowDetail (articleId) {
+      console.log('-----', articleId)
+      getById({ id: articleId }).then(res => {
+        this.topArticle = res.data
+      })
+    }
+
+  },
+  created () {
+    this.pageQuery()
+    // 查询top文章
+    this.queryTopArticle()
   }
 }
 </script>
@@ -133,6 +114,7 @@ export default {
   }
 
   .pagination-box {
+    width: 330px;
     display: flex;
     justify-content: center;
     position: absolute;

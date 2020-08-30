@@ -97,6 +97,7 @@ export default {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: #D3D3D3;
 
   .background-img {
     height: 100%;
