@@ -19,6 +19,7 @@
 
 <script>
 import { getIndexInfo } from '@/api/IndexApi'
+import { getIndexCache, setIndexCache } from '@/utils/SessionCache'
 
 export default {
   name: 'Index',
@@ -71,10 +72,14 @@ export default {
       }, 1000)
     },
     doGetIndex () {
-      getIndexInfo({}).then((data) => {
-        console.warn(data.data)
-        this.indexData = data.data
-      })
+      if (getIndexCache() == null) {
+        getIndexInfo({}).then((res) => {
+          setIndexCache(JSON.stringify(res.data))
+          this.indexData = res.data
+        })
+      } else {
+        this.indexData = JSON.parse(getIndexCache())
+      }
     }
   },
   created () {
