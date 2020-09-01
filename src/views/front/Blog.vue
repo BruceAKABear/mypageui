@@ -41,6 +41,7 @@
             <i class="el-icon-star-on" style="color: red">{{ topArticle.likeCount }}</i>
             <i class="el-icon-star-on" style="color: red">{{ topArticle.viewCount }}</i>
           </div>
+          <span v-html="topArticle.content"></span>
         </div>
       </div>
 
