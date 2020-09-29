@@ -177,8 +177,6 @@ export default {
 
         .pagination-box {
           width: 100%;
-          display: flex;
-          justify-content: center;
         }
       }
 

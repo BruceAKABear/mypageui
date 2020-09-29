@@ -12,6 +12,7 @@ import Write from '../views/back/Write'
 import System from '../views/back/System'
 import Login from '@/views/Login'
 import { getToken } from '@/utils/auth'
+import BasicConfig from '@/views/back/BasicConfig'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,12 @@ const routes = [
         name: 'System',
         component: System,
         meta: { title: '系统设置' }
+      },
+      {
+        path: 'basicConfig',
+        name: 'BasicConfig',
+        component: BasicConfig,
+        meta: { title: '基础设置' }
       }
     ]
   },

@@ -6,7 +6,7 @@
       </div>
       <div class="login-right">
         <div class="login-header">
-          <span>智能家居助手 | 后台系统</span>
+          <span>个人网站 | 后台系统</span>
         </div>
         <div class="login-input-box">
           <el-input size="large" v-model="loginData.phoneNumber" placeholder="手机号码"
@@ -46,6 +46,7 @@ export default {
         // 执行登录逻辑
         login(this.loginData).then((data) => {
           setToken('123')
+          window.sessionStorage.setItem('activePath', 'dashboard')
           this.$router.push('/admin')
         })
       }

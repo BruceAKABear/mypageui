@@ -133,7 +133,7 @@ export default {
   }
 
   .index-time {
-    margin-top: 60px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     font-weight: bold;
@@ -155,12 +155,12 @@ export default {
 
     .el-button {
       border-left: 0;
-      margin-left: 5px;
       width: 120px;
+      border-radius: 0 5px 5px 0;
     }
 
     .el-input {
-      border-radius: 4px;
+      border-radius: 0;
     }
   }
 }

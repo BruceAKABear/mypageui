@@ -55,14 +55,31 @@
           <i class="el-icon-setting"></i>
           <span slot="title">系统设置</span>
         </el-menu-item>
+        <!--系统设置-->
+        <el-submenu index="sysconfig">
+          <template slot="title">
+            <i class="el-icon-setting"></i>
+            <span>系统设置</span>
+          </template>
+          <el-menu-item index="basicConfig">基础设置</el-menu-item>
+          <el-menu-item-group title="分组2">
+            <el-menu-item index="1-3">选项3</el-menu-item>
+          </el-menu-item-group>
+          <el-submenu index="1-4">
+            <template slot="title">选项4</template>
+            <el-menu-item index="1-4-1">选项1</el-menu-item>
+          </el-submenu>
+        </el-submenu>
       </el-menu>
     </el-aside>
     <!--main-->
     <el-main>
       <el-card class="main-header">
-        <i class="el-icon-s-fold"></i>
-        <div class="admin-info-box">
+        <div>
           <i class="el-icon-s-fold"></i>
+          <div>
+
+          </div>
         </div>
       </el-card>
       <el-card class="main-real-box">
@@ -94,6 +111,7 @@ export default {
   computed: {
     activeName () {
       const routeName = this.$route.name
+      console.log(routeName, '-----------')
       let realName
       switch (routeName) {
         case 'Dashboard':
@@ -104,6 +122,9 @@ export default {
           break
         case 'System':
           realName = '系统设置'
+          break
+        case 'BasicConfig':
+          realName = '基础设置'
           break
         default:
           return '控制台'

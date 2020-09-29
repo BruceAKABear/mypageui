@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <!--侧边-->
-    <el-aside width="350px">
+    <el-aside>
       <el-card shadow="hover" v-for="article in pageData.records " :key="article.id" :body-style="{ padding: '8px' }"
                @click.native="doShowDetail(article.id)">
         <div class="article-item-header">
@@ -97,53 +97,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-aside {
-  padding: 10px;
-  border-right: solid 1px #EEEEEE;
+.el-container {
+  width: 100%;
 
-  .el-card {
-    margin-bottom: 10px;
-    font-size: 15px;
+  .el-aside {
+    width: 30%;
+    padding: 10px;
+    border-right: solid 1px #EEEEEE;
 
-    .article-item-detail {
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #9E9E9E;
-    }
-  }
+    .el-card {
+      margin-bottom: 10px;
+      font-size: 15px;
 
-  .pagination-box {
-    width: 330px;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 30px;
-  }
-}
-
-.el-main {
-  .article-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
-    .article-title-box {
-      font-size: 30px;
-      color: #999999;
-      text-align: center;
-
-      .title-info-box {
+      .article-item-detail {
+        margin-top: 8px;
         display: flex;
         justify-content: space-between;
-        font-size: 15px;
-        padding: 20px;
+        font-size: 12px;
+        color: #9E9E9E;
       }
     }
 
+    .pagination-box {
+      margin-top: 40px;
+      width: 100%;
+      text-align: center;
+
+    }
+  }
+
+  .el-main {
+    width: 70%;
+
+    .article-box {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      .article-title-box {
+        font-size: 30px;
+        color: #999999;
+        text-align: center;
+
+        .title-info-box {
+          display: flex;
+          justify-content: space-between;
+          font-size: 15px;
+          padding: 20px;
+        }
+      }
+
+    }
   }
 }
-
 </style>

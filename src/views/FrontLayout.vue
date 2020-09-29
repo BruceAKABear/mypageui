@@ -4,9 +4,9 @@
       <el-menu
         :default-active="activePath"
         mode="horizontal"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        background-color="#000000"
+        text-color="#cdcdcd"
+        active-text-color="#ffffff"
         :router="true"
       >
         <el-menu-item class="logo-box">
@@ -62,7 +62,7 @@ export default {
 
     .el-header {
       padding: 0;
-      background-color: #545c64;
+      background-color: #000000;
       display: flex;
       justify-content: space-between;
 
