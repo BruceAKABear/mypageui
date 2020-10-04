@@ -5,7 +5,7 @@
         :default-active="activePath"
         mode="horizontal"
         background-color="#000000"
-        text-color="#cdcdcd"
+        text-color="#909399"
         active-text-color="#ffffff"
         :router="true"
       >

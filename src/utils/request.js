@@ -5,9 +5,9 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const instance = axios.create({
-  baseURL: 'http://47.111.252.160:9988', // api的base_url
-  // baseURL: 'http://127.0.0.1:9988', // api的base_url
-  timeout: 5000 // request timeout
+  // baseURL: 'http://47.111.252.160:9988', // api的base_url
+  baseURL: 'http://127.0.0.1:9988', // api的base_url
+  timeout: 8000 // request timeout
 })
 
 // request interceptor

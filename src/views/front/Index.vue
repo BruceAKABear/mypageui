@@ -10,7 +10,8 @@
         <span class="index-time-time">{{ time }}</span>
       </div>
       <div class="index-search-box">
-        <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"></el-input>
+        <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
+                  class="local-input"></el-input>
         <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
       </div>
     </div>
@@ -159,10 +160,13 @@ export default {
       border-radius: 0 5px 5px 0;
     }
 
-    .el-input {
-      border-radius: 0;
-    }
   }
 }
 
+</style>
+<style>
+.local-input .el-input__inner {
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
 </style>

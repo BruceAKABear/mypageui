@@ -12,9 +12,9 @@
       <el-menu
         :default-active="activePath"
         class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        background-color="#000000"
+        text-color="#909399"
+        active-text-color="#ffffff"
         unique-opened
         router
       >
@@ -22,54 +22,42 @@
           <i class="el-icon-menu"></i>
           <span slot="title">工作台</span>
         </el-menu-item>
-
-        <el-menu-item index="write" @click="handleSelect('write')">
-          <i class="el-icon-edit"></i>
-          <span slot="title">写作</span>
-        </el-menu-item>
-
-        <el-submenu index="2">
+        <!--博客管理-->
+        <el-submenu index="blogSetting">
           <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
+            <i class="el-icon-document"></i>
+            <span>博客管理</span>
           </template>
-          <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
+          <el-menu-item index="articleList" @click="handleSelect('articleList')">
+            <i class="el-icon-document-copy"></i>
+            <span slot="title">文章列表</span>
+          </el-menu-item>
         </el-submenu>
-        <el-menu-item index="3">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <!--系统设置-->
-        <el-menu-item index="system">
+        <!--视频管理-->
+        <el-submenu index="videoSetting">
+          <template slot="title">
+            <i class="el-icon-video-camera-solid"></i>
+            <span>视频管理</span>
+          </template>
+          <el-menu-item index="system">
+            <i class="el-icon-video-camera"></i>
+            <span slot="title">视频列表</span>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="opensourceSetting">
+          <template slot="title">
+            <i class="el-icon-data-analysis"></i>
+            <span>开源项目管理</span>
+          </template>
+          <el-menu-item index="openSource" @click="handleSelect('openSource')">
+            <i class="el-icon-data-analysis"></i>
+            <span slot="title">项目列表</span>
+          </el-menu-item>
+        </el-submenu>
+        <el-menu-item index="systemSetting" @click="handleSelect('systemSetting')">
           <i class="el-icon-setting"></i>
           <span slot="title">系统设置</span>
         </el-menu-item>
-        <!--系统设置-->
-        <el-submenu index="sysconfig">
-          <template slot="title">
-            <i class="el-icon-setting"></i>
-            <span>系统设置</span>
-          </template>
-          <el-menu-item index="basicConfig">基础设置</el-menu-item>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
       </el-menu>
     </el-aside>
     <!--main-->
@@ -111,7 +99,6 @@ export default {
   computed: {
     activeName () {
       const routeName = this.$route.name
-      console.log(routeName, '-----------')
       let realName
       switch (routeName) {
         case 'Dashboard':
@@ -145,7 +132,7 @@ export default {
   height: 100%;
 
   .el-aside {
-    background-color: #545c64;
+    background-color: #000000;
 
     .meub-header {
       height: 50px;
@@ -162,7 +149,6 @@ export default {
     padding: 0;
 
     .main-header {
-      width: 100%;
       height: 50px;
       display: flex;
       align-items: center;
@@ -173,6 +159,7 @@ export default {
 
     .main-real-box {
       margin: 10px;
+      height: 93%;
 
       .el-breadcrumb {
         margin-bottom: 10px;

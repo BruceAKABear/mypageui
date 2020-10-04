@@ -23,13 +23,9 @@
         </el-pagination>
       </div>
     </el-aside>
+    <!--文章主体-->
     <el-main>
-      <!--文章导航-->
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>博客</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ topArticle.title }}</el-breadcrumb-item>
-      </el-breadcrumb>
-
+      <!--文章头部-->
       <div class="article-box">
         <div class="article-title-box">
           <span>
@@ -41,10 +37,12 @@
             <i class="el-icon-star-on" style="color: red">{{ topArticle.likeCount }}</i>
             <i class="el-icon-star-on" style="color: red">{{ topArticle.viewCount }}</i>
           </div>
-          <span v-html="topArticle.content"></span>
         </div>
       </div>
-
+      <!--文章主体-->
+      <div style="width: 90%">
+        <span v-html="topArticle.content"></span>
+      </div>
     </el-main>
   </el-container>
 </template>
@@ -130,7 +128,6 @@ export default {
     width: 70%;
 
     .article-box {
-      width: 100%;
       display: flex;
       justify-content: center;
       margin-top: 20px;

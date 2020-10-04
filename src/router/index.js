@@ -9,10 +9,12 @@ import Opensource from '../views/front/Opensource'
 import BackLayout from '../views/BackLayout'
 import Dashboard from '../views/back/Dashboard'
 import Write from '../views/back/Write'
-import System from '../views/back/System'
 import Login from '@/views/Login'
 import { getToken } from '@/utils/auth'
 import BasicConfig from '@/views/back/BasicConfig'
+import ArticleList from '@/views/back/ArticleList'
+import SystemSetting from '@/views/back/SystemSetting'
+import OpenSource from '@/views/back/OpenSource'
 
 Vue.use(VueRouter)
 
@@ -67,6 +69,11 @@ const routes = [
         name: 'Dashboard',
         component: Dashboard,
         meta: { title: '控制台' }
+      }, {
+        path: 'articleList',
+        name: 'ArticleList',
+        component: ArticleList,
+        meta: { title: '文章列表' }
       },
       {
         path: 'write',
@@ -75,9 +82,9 @@ const routes = [
         meta: { title: '写作' }
       },
       {
-        path: 'system',
-        name: 'System',
-        component: System,
+        path: 'systemSetting',
+        name: 'SystemSetting',
+        component: SystemSetting,
         meta: { title: '系统设置' }
       },
       {
@@ -85,6 +92,12 @@ const routes = [
         name: 'BasicConfig',
         component: BasicConfig,
         meta: { title: '基础设置' }
+      },
+      {
+        path: 'openSource',
+        name: 'OpenSource',
+        component: OpenSource,
+        meta: { title: '开源项目' }
       }
     ]
   },
