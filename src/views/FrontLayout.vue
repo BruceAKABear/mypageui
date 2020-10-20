@@ -18,7 +18,6 @@
         <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
         <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
       </el-menu>
-      <i class="el-icon-edit"></i>
       <el-drawer
         size="50%"
         class="hidden-lg-and-up"
@@ -62,7 +61,7 @@ export default {
       activePath: '',
       logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
       keyword: '',
-      sideMenuShow: true
+      sideMenuShow: false
     }
   },
   methods: {
