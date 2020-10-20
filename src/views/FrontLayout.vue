@@ -7,7 +7,6 @@
         background-color="#000000"
         text-color="#909399"
         active-text-color="#ffffff"
-        :router="true"
       >
         <el-menu-item class="logo-box">
           <el-avatar shape="square" :size="50" :src="logoUrl"></el-avatar>
@@ -41,9 +40,9 @@ export default {
   },
   methods: {
     handleSelect (ac) {
-      console.log(ac)
       this.activePath = ac
       window.sessionStorage.setItem('activePath', ac)
+      this.$router.push('/' + ac)
     },
     doSeach () {
       this.$message.info('en?')
@@ -71,6 +70,8 @@ export default {
 
         .logo-box {
           margin-right: 20px;
+          display: flex;
+          align-items: center;
         }
 
         .el-menu {

@@ -11,7 +11,7 @@
       </div>
       <div class="index-search-box">
         <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
-                  class="local-input"></el-input>
+                  class="local-input" ref="indexInput"></el-input>
         <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
       </div>
     </div>
@@ -37,7 +37,10 @@ export default {
   methods: {
     doSearch () {
       if (this.keyword.trim() !== '') {
-        this.$message.success('嗯？')
+        this.$router.push({
+          path: '/search',
+          query: { keyword: this.keyword }
+        })
       }
     },
     getDate () {
@@ -89,6 +92,9 @@ export default {
     // 获取时间
     this.getTime()
     this.doGetIndex()
+  },
+  mounted () {
+    this.$refs.indexInput.focus()
   },
   beforeDestroy () {
     if (this.timmer) {

@@ -12,9 +12,14 @@ import Write from '../views/back/Write'
 import Login from '@/views/Login'
 import { getToken } from '@/utils/auth'
 import BasicConfig from '@/views/back/BasicConfig'
-import ArticleList from '@/views/back/ArticleList'
 import SystemSetting from '@/views/back/SystemSetting'
 import OpenSource from '@/views/back/OpenSource'
+import BlogType from '@/views/back/BlogType'
+import BlogList from '@/views/back/BlogList'
+import NewBlog from '@/views/back/NewBlog'
+import BlogTag from '@/views/back/BlogTag'
+import BlogDetail from '@/views/front/BlogDetail'
+import Search from '@/views/front/Search'
 
 Vue.use(VueRouter)
 
@@ -39,6 +44,12 @@ const routes = [
         meta: { title: '博客' }
       },
       {
+        path: 'blogDetail/:blogId',
+        name: 'BlogDetail',
+        component: BlogDetail,
+        meta: { title: '博客' }
+      },
+      {
         path: 'video',
         name: 'Video',
         component: Video,
@@ -54,6 +65,12 @@ const routes = [
         name: 'Donate',
         component: Donate,
         meta: { title: '捐助' }
+      },
+      {
+        path: 'search',
+        name: 'Search',
+        component: Search,
+        meta: { title: '搜索' }
       }
     ]
   },
@@ -70,10 +87,25 @@ const routes = [
         component: Dashboard,
         meta: { title: '控制台' }
       }, {
-        path: 'articleList',
-        name: 'ArticleList',
-        component: ArticleList,
-        meta: { title: '文章列表' }
+        path: 'blogType',
+        name: 'BlogType',
+        component: BlogType,
+        meta: { title: '博客分类' }
+      }, {
+        path: 'blogTag',
+        name: 'BlogTag',
+        component: BlogTag,
+        meta: { title: '博客标签' }
+      }, {
+        path: 'newBlog',
+        name: 'NewBlog',
+        component: NewBlog,
+        meta: { title: '新增博客' }
+      }, {
+        path: 'blogList',
+        name: 'BlogList',
+        component: BlogList,
+        meta: { title: '博客列表' }
       },
       {
         path: 'write',

@@ -28,9 +28,17 @@
             <i class="el-icon-document"></i>
             <span>博客管理</span>
           </template>
-          <el-menu-item index="articleList" @click="handleSelect('articleList')">
+          <el-menu-item index="blogType" @click="handleSelect('blogType')">
+            <i class="el-icon-s-grid"></i>
+            <span slot="title">博客分类</span>
+          </el-menu-item>
+          <el-menu-item index="blogTag" @click="handleSelect('blogTag')">
+            <i class="el-icon-collection-tag"></i>
+            <span slot="title">博客标签</span>
+          </el-menu-item>
+          <el-menu-item index="blogList" @click="handleSelect('blogList')">
             <i class="el-icon-document-copy"></i>
-            <span slot="title">文章列表</span>
+            <span slot="title">博客列表</span>
           </el-menu-item>
         </el-submenu>
         <!--视频管理-->
@@ -62,14 +70,6 @@
     </el-aside>
     <!--main-->
     <el-main>
-      <el-card class="main-header">
-        <div>
-          <i class="el-icon-s-fold"></i>
-          <div>
-
-          </div>
-        </div>
-      </el-card>
       <el-card class="main-real-box">
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item>管理后台</el-breadcrumb-item>
@@ -146,20 +146,14 @@ export default {
   }
 
   .el-main {
-    padding: 0;
-
-    .main-header {
-      height: 50px;
-      display: flex;
-      align-items: center;
-      font-size: 30px;
-      color: #999999;
-      justify-content: space-between;
-    }
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 10px;
 
     .main-real-box {
-      margin: 10px;
-      height: 93%;
+      height: 100%;
+      border: 0;
+      overflow-y: scroll;
 
       .el-breadcrumb {
         margin-bottom: 10px;
