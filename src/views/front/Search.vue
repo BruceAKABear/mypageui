@@ -7,14 +7,15 @@
       </el-col>
       <!--主体-->
       <el-col :lg="16" :xl="16">
-        <div>
-          <div class="index-search-box">
-            <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
-                      class="local-input" ref="indexInput"></el-input>
-            <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
-          </div>
-
-        </div>
+        <el-row>
+          <el-col :span="24">
+            <div class="index-search-box">
+              <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
+                        class="local-input" ref="indexInput"></el-input>
+              <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
+            </div>
+          </el-col>
+        </el-row>
       </el-col>
       <!--右侧-->
       <el-col :span="4" class="hidden-sm-and-down">
@@ -56,8 +57,8 @@ export default {
   display: flex;
   justify-content: center;
   text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   .el-button {
     border-left: 0;

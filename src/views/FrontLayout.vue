@@ -2,6 +2,7 @@
   <el-container>
     <el-header>
       <el-menu
+        class="hidden-sm-and-down"
         :default-active="activePath"
         mode="horizontal"
         background-color="#000000"
@@ -17,8 +18,31 @@
         <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
         <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
       </el-menu>
-      <div class="header-search-box" v-show="activePath!=='index'&&activePath!=='donate'">
-        <el-input placeholder="请输入内容" v-model="seachKey" @keyup.enter.native="doSeach"></el-input>
+      <i class="el-icon-edit"></i>
+      <el-drawer
+        size="50%"
+        class="hidden-lg-and-up"
+        :visible.sync="sideMenuShow"
+        :with-header="false">
+        <el-menu
+          class="hidden-lg-and-up"
+          :default-active="activePath"
+          background-color="#000000"
+          text-color="#909399"
+          active-text-color="#ffffff"
+        >
+          <el-menu-item class="logo-box">
+            <el-avatar shape="square" :size="50" :src="logoUrl"></el-avatar>
+          </el-menu-item>
+          <el-menu-item index="index" @click="handleSelect('index')">主页</el-menu-item>
+          <el-menu-item index="blog" @click="handleSelect('blog')">博客</el-menu-item>
+          <el-menu-item index="video" @click="handleSelect('video')">视频</el-menu-item>
+          <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
+          <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
+        </el-menu>
+      </el-drawer>
+      <div class="header-search-box hidden-sm-and-down" v-show="activePath!=='index'&&activePath!=='donate'">
+        <el-input placeholder="请输入内容" v-model="keyword" @keyup.enter.native="doSeach"></el-input>
         <el-button type="primary" @click="doSeach">搜索</el-button>
       </div>
     </el-header>
@@ -29,13 +53,16 @@
 </template>
 
 <script>
+import 'element-ui/lib/theme-chalk/display.css'
+
 export default {
   name: 'FrontLayout',
   data () {
     return {
       activePath: '',
       logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      seachKey: ''
+      keyword: '',
+      sideMenuShow: true
     }
   },
   methods: {
@@ -45,7 +72,12 @@ export default {
       this.$router.push('/' + ac)
     },
     doSeach () {
-      this.$message.info('en?')
+      if (this.keyword.trim() !== '') {
+        this.$router.push({
+          path: '/search',
+          query: { keyword: this.keyword }
+        })
+      }
     }
   },
   created () {
@@ -56,46 +88,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .el-container {
-    height: 100%;
+.el-container {
+  height: 100%;
 
-    .el-header {
-      padding: 0;
-      background-color: #000000;
-      display: flex;
-      justify-content: space-between;
+  .el-header {
+    padding: 0;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+
+    .el-menu {
+      border-bottom: 0;
+
+      .logo-box {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+      }
 
       .el-menu {
-        border-bottom: 0;
+        border-right: none;
 
-        .logo-box {
-          margin-right: 20px;
-          display: flex;
-          align-items: center;
-        }
-
-        .el-menu {
-          border-right: none;
-
-        }
-      }
-
-      .header-search-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-right: 20px;
-
-        .el-button {
-          margin-left: 5px;
-        }
       }
     }
 
-    .el-main {
-      padding: 0;
-    }
+    .header-search-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 20px;
 
+      .el-button {
+        margin-left: 5px;
+      }
+    }
   }
+
+  .el-main {
+    padding: 0;
+  }
+
+}
+
+</style>
+<style>
+.el-drawer__body {
+  background-color: black;
+
+}
 
 </style>

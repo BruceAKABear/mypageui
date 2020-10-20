@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <!--侧边-->
-    <el-aside width="280px">
+    <el-aside width="280px" class="hidden-sm-and-down">
       <div class="new-blog-box">
         <div class="new-blog-header-box">
           <span>最新文章</span>
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-
+import 'element-ui/lib/theme-chalk/display.css'
 import { typeList } from '@/api/blogType'
 import { tagList } from '@/api/blogTag'
 import { new10, page, top10 } from '@/api/blog'
