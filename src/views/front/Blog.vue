@@ -6,7 +6,8 @@
         <div class="new-blog-header-box">
           <span>最新文章</span>
         </div>
-        <div class="new-blog-content-box" v-for=" newBlog in newBlogList" :key="newBlog.id">
+        <div class="new-blog-content-box" v-for=" newBlog in newBlogList" :key="newBlog.id"
+             @click="goDetail(newBlog.id)">
           <div class="item-head">
             {{ newBlog.title }}
           </div>
@@ -31,12 +32,12 @@
     <!--文章主体-->
     <el-main>
       <!--精选博客轮播图-->
-      <div class="top-blogs-box">
+      <div class="top-blogs-box hidden-sm-and-down">
         <div class="top-blogs-header">精选博客</div>
         <el-carousel :interval="8000" type="card" height="180px">
           <el-carousel-item v-for="topBlog in topBlogs" :key="topBlog.id" @click.native="goDetail(topBlog.id)">
             <div style="position: absolute;top: 40%;left: 50%;transform: translate(-50%,-40%);width: 500px;">
-              <el-badge value="spring" type="success" class="badge-class">
+              <el-badge value="spring" type="error" style="margin-top: 10px;margin-left: 10px">
                 <div
                   style="font-size: 25px;font-weight: bold;color: #FFFFFF;overflow-wrap: break-spaces;overflow-x: hidden;text-overflow: ellipsis">
                   <span>{{ topBlog.title }}</span>
@@ -196,8 +197,8 @@ export default {
     border-right: solid 1px #EEEEEE;
 
     .new-blog-box {
-      margin-bottom: 15px;
-      height: 48vh;
+      margin-bottom: 20px;
+      height: 50vh;
       overflow: hidden;
 
       .new-blog-header-box {

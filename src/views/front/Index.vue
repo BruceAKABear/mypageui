@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="background-img" :style="{'backgroundImage': 'url(' + indexData.backgroundImg + ')'}"></div>
+    <div class="background-img" :style="{'backgroundImage': 'url(' + indexData.backgroundImg + ')','background-size':'100% 100%'}"></div>
     <div class="index-box">
       <div class="index-slogan">
         <span>{{ indexData.slogan }}</span>
@@ -19,15 +19,15 @@
 </template>
 
 <script>
-import { getIndexInfo } from '@/api/IndexApi'
 import { getIndexCache, setIndexCache } from '@/utils/SessionCache'
+import { getBasicInfo } from '@/api/system'
 
 export default {
   name: 'Index',
   data () {
     return {
       backgroundImage: '',
-      slogan: '生命是一场没有目的地的旅行',
+      slogan: '',
       date: '',
       time: '',
       keyword: '',
@@ -39,7 +39,7 @@ export default {
       if (this.keyword.trim() !== '') {
         this.$router.push({
           path: '/search',
-          query: { keyword: this.keyword }
+          query: { keyword: this.keyword.trim() }
         })
       }
     },
@@ -55,8 +55,7 @@ export default {
       if (strDate >= 0 && strDate <= 9) {
         strDate = '0' + strDate
       }
-      const currentdate = year + seperator1 + month + seperator1 + strDate
-      this.date = currentdate
+      this.date = year + seperator1 + month + seperator1 + strDate
     },
     getTime () {
       const date = new Date()
@@ -77,9 +76,11 @@ export default {
     },
     doGetIndex () {
       if (getIndexCache() == null) {
-        getIndexInfo({}).then((res) => {
-          setIndexCache(JSON.stringify(res.data))
-          this.indexData = res.data
+        getBasicInfo().then(res => {
+          if (res.status) {
+            this.indexData = res.data
+            setIndexCache(JSON.stringify(res.data))
+          }
         })
       } else {
         this.indexData = JSON.parse(getIndexCache())

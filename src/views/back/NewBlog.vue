@@ -26,6 +26,21 @@
                      :key="typeItem.id"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="博客标签">
+        <el-select v-model="formData.tagIds" placeholder="请选博客分类" multiple>
+          <el-option :label="typeItem.typeName" :value="typeItem.id" v-for="typeItem in typeList"
+                     :key="typeItem.id"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否开启评论">
+        <el-switch
+          v-model="formData.allowComment"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          active-text="开启评论"
+          inactive-text="关闭评论">
+        </el-switch>
+      </el-form-item>
 <!--      <el-form-item label="博客标签">-->
 <!--        <el-select v-model="formData.typeId" placeholder="请选博客分类">-->
 <!--          <el-option :label="typeItem.typeName" :value="typeItem.id" v-for="typeItem in typeList"-->

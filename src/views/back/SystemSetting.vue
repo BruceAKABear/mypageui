@@ -111,6 +111,39 @@
           </el-form>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="公众号设置">
+        <!--tab头-->
+        <div style="display: flex;justify-content: flex-end;margin-bottom: 20px">
+          <el-switch
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            v-model="enablePassword"
+            active-text="修改"
+          >
+          </el-switch>
+        </div>
+        <!--tab体-->
+        <div class="tab-content-box">
+          <el-form
+            :model="passwordFormData"
+            class="demo-form-inline"
+            label-width="120px"
+          >
+            <el-form-item label="公众号APPID">
+              <el-input v-model="passwordFormData.user" placeholder="请输入手机号" :disabled="!enablePassword"></el-input>
+            </el-form-item>
+            <el-form-item label="公众号Secret">
+              <el-input v-model="passwordFormData.user" placeholder="请输入密码" :disabled="!enablePassword"></el-input>
+            </el-form-item>
+            <el-form-item label="MessageToken">
+              <el-input v-model="passwordFormData.user" placeholder="请输入密码" :disabled="!enablePassword"></el-input>
+            </el-form-item>
+            <el-form-item label="EncodingAESKey">
+              <el-input v-model="passwordFormData.user" placeholder="请输入密码" :disabled="!enablePassword"></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>

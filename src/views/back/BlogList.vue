@@ -49,11 +49,23 @@
         label="更新时间">
       </el-table-column>
       <el-table-column
-        width="240"
+        width="300"
         label="操作"
         align="center"
       >
         <template slot-scope="scope">
+          <el-tooltip class="item" effect="dark" content="允许评论" placement="top">
+            <el-switch
+              @change="topChange(scope.row)"
+              class="switchStyle"
+              style="margin-right: 8px;color: #FFFFFF"
+              v-model="scope.row.top"
+              active-color="#13ce66"
+              active-text="允许"
+              inactive-text="禁止"
+              inactive-color="#ff4949">
+            </el-switch>
+          </el-tooltip>
           <el-tooltip class="item" effect="dark" content="是否置顶" placement="top">
             <el-switch
               @change="topChange(scope.row)"

@@ -22,13 +22,6 @@
       </el-table-column>
       <el-table-column
         align="center"
-        label="分类样式">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.typeStyle">{{ scope.row.typeName }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        align="center"
         label="包含文章数">
         <template slot-scope="scope">
           {{ scope.row.blogCount ? scope.row.blogCount : 0 }}
@@ -76,14 +69,6 @@
         <el-form ref="form" :model="formData" label-width="80px">
           <el-form-item label="分类名">
             <el-input v-model="formData.typeName" placeholder="请输入分类名"></el-input>
-          </el-form-item>
-          <el-form-item label="分类样式">
-            <el-select v-model="formData.typeStyle" placeholder="请选择分类样式">
-              <el-option label="success" value="success"></el-option>
-              <el-option label="info" value="info"></el-option>
-              <el-option label="warning" value="warning"></el-option>
-              <el-option label="danger" value="danger"></el-option>
-            </el-select>
           </el-form-item>
         </el-form>
       </div>
