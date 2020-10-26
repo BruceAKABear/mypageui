@@ -18,6 +18,19 @@
         <el-menu-item index="opensource" @click="handleSelect('opensource')">开源项目</el-menu-item>
         <el-menu-item index="donate" @click="handleSelect('donate')">捐助</el-menu-item>
       </el-menu>
+      <el-menu
+        class="hidden-lg-and-up"
+        mode="horizontal"
+        background-color="#000000"
+        text-color="#909399"
+        active-text-color="#ffffff"
+      >
+        <el-menu-item>
+          <i class="el-icon-menu" style="color: white;font-size: 25px" @click="sideMenuShow= !sideMenuShow"></i>
+        </el-menu-item>
+
+      </el-menu>
+
       <el-drawer
         size="50%"
         class="hidden-lg-and-up"

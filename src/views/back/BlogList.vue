@@ -245,7 +245,9 @@ export default {
 
 <style lang="scss" scoped>
 .main-box {
-  margin-top: 20px;
+  height: 100%;
+  padding: 5px;
+  background-color: white;
 
   .button-box {
     margin-bottom: 10px;

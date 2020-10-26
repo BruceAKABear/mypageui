@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { doSearchApi } from '@/api/search'
+
 export default {
   name: 'Search',
   data () {
@@ -35,7 +37,9 @@ export default {
   },
   methods: {
     doSearch () {
-      console.log('123')
+      doSearchApi({ keyword: this.keyword }).then(res => {
+        console.warn(res)
+      })
     }
   },
   created () {

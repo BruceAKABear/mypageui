@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <!--日历box-->
-    <div class="calender-box">
-      <el-calendar v-model="value">
+  <div class="dashboard-wrapper">
+    <div class="basic-info-wrapper">
+      1212
+    </div>
+    <div class="calendar-wrapper">
+      <el-calendar v-model="dataValue">
       </el-calendar>
     </div>
   </div>
@@ -12,14 +14,25 @@
 export default {
   name: 'Dashboard',
   data () {
-    return {}
+    return {
+      dataValue: ''
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.calender-box {
-  padding: 20px;
+.dashboard-wrapper {
+  .basic-info-wrapper {
+    height: 100px;
+    width: 100%;
+    background-color: #ffffff;
+  }
+
+  .calendar-wrapper {
+    margin-top: 20px;
+  }
+
 }
 
 </style>

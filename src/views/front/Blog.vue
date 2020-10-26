@@ -23,7 +23,7 @@
       </div>
       <div class="tag-clod-box">
         <div class="tag-clod-header-box">
-          <span>所有标签</span>
+          <span>标签云</span>
         </div>
         <tag-cloud style="width: 250px;height: 250px" :config="tagCloudConfig" :data="hotTag"
                    @clickTag="clickTagItem"></tag-cloud>
@@ -37,17 +37,15 @@
         <el-carousel :interval="8000" type="card" height="180px">
           <el-carousel-item v-for="topBlog in topBlogs" :key="topBlog.id" @click.native="goDetail(topBlog.id)">
             <div style="position: absolute;top: 40%;left: 50%;transform: translate(-50%,-40%);width: 500px;">
-              <el-badge value="spring" type="error" style="margin-top: 10px;margin-left: 10px">
-                <div
-                  style="font-size: 25px;font-weight: bold;color: #FFFFFF;overflow-wrap: break-spaces;overflow-x: hidden;text-overflow: ellipsis">
-                  <span>{{ topBlog.title }}</span>
-                </div>
-              </el-badge>
+              <div
+                style="font-size: 25px;font-weight: bold;color: #FFFFFF;overflow-wrap: break-spaces;overflow-x: hidden;text-overflow: ellipsis">
+                <span>{{ topBlog.title }}</span>
+              </div>
               <div style="margin-top: 15px;font-size: 15px;color: #EEEEEE">
                 <span>{{ topBlog.description }}</span>
               </div>
             </div>
-            <el-image :src="topBlog.headPic" fit="contain" style="z-index: -1"></el-image>
+            <el-image :src="topBlog.headPic" fit="scale-down" style="z-index: -1"></el-image>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -173,7 +171,7 @@ export default {
     }
 
   },
-  created (parm) {
+  created () {
     // 查询标签列表
     this.doGetTagList()
     //
@@ -182,7 +180,6 @@ export default {
     // 查询博客类型集合
     this.doGetTypeList()
     this.windowHeight = window.innerHeight - 60
-    console.log(parm, '--------->')
   }
 }
 </script>

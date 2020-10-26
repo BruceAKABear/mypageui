@@ -12,7 +12,7 @@
           <el-input size="large" v-model="loginData.phoneNumber" placeholder="手机号码"
                     prefix-icon="el-icon-mobile"></el-input>
           <el-input style="margin-top: 20px" ref="userNameInput" size="large" v-model="loginData.passWord"
-                    placeholder="密码" prefix-icon="el-icon-lock"></el-input>
+                    placeholder="密码" prefix-icon="el-icon-lock" show-password></el-input>
           <el-button type="primary" @click="doLogin">
             立即登录
           </el-button>
@@ -27,7 +27,7 @@ import { login } from '@/api/login'
 import { setToken } from '@/utils/auth'
 
 export default {
-  name: 'Login',
+  name: 'BackendLogin',
   data () {
     return {
       backgroundImage: '~@/assets/login-back.jpg',

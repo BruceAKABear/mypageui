@@ -20,8 +20,8 @@
             <div class="info-box">
               <!--更新时间-->
               <div>
-                <i class="el-icon-alarm-clock" style="margin-right: 5px"></i>
-                {{ blogData.updateTime }}
+                <i class="el-icon-alarm-clock" style="margin-right: 2px"></i>
+                更新时间: {{ blogData.updateTime }}
               </div>
               <div style="margin-left: 40px">
                 <i class="el-icon-view" style="margin-right: 2px"></i>
@@ -45,7 +45,13 @@
           <div class="comment-box">
             <div class="comment-header-box">{{ blogData.allowComment ? '精彩评论' : '未开启评论' }}</div>
             <!--评论体-->
-            <comment :comments="commentList" v-if="blogData.allowComment" @commitComment="doCommitComment"></comment>
+            <comment
+              :allow-comment="showComment"
+              :comments="commentList"
+              v-if="blogData.allowComment"
+              @commitComment="doCommitComment"
+              @commentTriggered="triggered"
+            ></comment>
           </div>
         </div>
       </el-col>
@@ -118,7 +124,8 @@ export default {
           content: '从没见过这么优秀的人',
           reply: []
         }
-      ]
+      ],
+      showComment: false
     }
   },
   components: { comment },
@@ -156,6 +163,10 @@ export default {
           this.doGetComments(this.blogData.id)
         }
       })
+    },
+    triggered () {
+      console.log('=========-=====-----------=')
+      this.showComment = true
     }
   },
   created () {

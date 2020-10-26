@@ -5,3 +5,6 @@ export function getToken () {
 export function setToken (token) {
   window.sessionStorage.setItem('token', token)
 }
+export function clearAdminToken () {
+  window.sessionStorage.removeItem('token')
+}

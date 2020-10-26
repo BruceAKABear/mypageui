@@ -1,12 +1,12 @@
 <template>
   <el-container>
     <!--左侧菜单-->
-    <el-aside width="200px">
+    <el-aside :width="collapse?'70px':'200px'">
       <div class="meub-header">
         <el-image
           style="width: 50px; height: 50px"
           :src="logoUrl"
-          fit="fill">
+          fit="scale-down">
         </el-image>
       </div>
       <el-menu
@@ -17,6 +17,8 @@
         active-text-color="#ffffff"
         unique-opened
         router
+        :collapse="collapse"
+        :collapse-transition="false"
       >
         <el-menu-item index="dashboard" @click="handleSelect('dashboard')">
           <i class="el-icon-menu"></i>
@@ -70,30 +72,69 @@
     </el-aside>
     <!--main-->
     <el-main>
-      <el-card class="main-real-box">
+      <!--主头-->
+      <div class="main-head-wrapper">
+        <!--左边-->
+        <div><i :class="collapse?'el-icon-s-unfold':'el-icon-s-fold'" style="cursor: pointer"
+                @click="collapse=!collapse"></i></div>
+        <div style="display: flex;justify-content: space-between;align-items: center;width: 80px">
+          <i class="el-icon-bell" style="font-size: 20px"></i>
+          <el-dropdown>
+            <el-avatar :size="30" :src="avatarUrl"></el-avatar>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <router-link to="/">
+                  <i class="el-icon-s-home" style="font-size: 16px;color: #409EFF"><span
+                    style="font-size: 14px;margin-left: 5px">去前端</span></i>
+                </router-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <i class="el-icon-s-home" style="font-size: 16px;color: #F56C6C" @click="doLogout"><span
+                  style="font-size: 14px;margin-left: 5px">退出</span></i>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <!--          <el-avatar :size="30" :src="avatarUrl"></el-avatar>-->
+        </div>
+      </div>
+      <!--主导航-->
+      <div class="navigation-wrapper">
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item>管理后台</el-breadcrumb-item>
           <el-breadcrumb-item>{{ activeName }}</el-breadcrumb-item>
         </el-breadcrumb>
+      </div>
+      <!--主体-->
+      <div class="main-body-wrapper">
         <router-view></router-view>
-      </el-card>
+      </div>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import { clearAdminToken } from '@/utils/auth'
+
 export default {
   name: 'FrontLayout',
   data () {
     return {
       activePath: '',
-      logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      logoUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      collapse: false,
+      avatarUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
     }
   },
   methods: {
     handleSelect (ac) {
       this.activePath = ac
       window.sessionStorage.setItem('activePath', ac)
+    },
+    doLogout () {
+      // 退出系统，本系统中退出系统，只需要删除token和跳转到后台登录页即可
+      clearAdminToken()
+      // 跳转
+      this.$router.push('/backendLogin')
     }
   },
   computed: {
@@ -138,6 +179,7 @@ export default {
       height: 50px;
       display: flex;
       text-align: center;
+      justify-content: center;
     }
 
     .el-menu {
@@ -146,20 +188,32 @@ export default {
   }
 
   .el-main {
-    height: 100%;
     background-color: #EEEEEE;
-    padding: 10px;
+    padding: 0;
 
-    .main-real-box {
-      height: 100%;
-      border: 0;
-      overflow-y: scroll;
-
-      .el-breadcrumb {
-        margin-bottom: 10px;
-      }
+    .main-head-wrapper {
+      height: 6vh;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
+    .navigation-wrapper {
+      height: 5vh;
+      display: flex;
+      padding-left: 10px;
+      align-items: center;
+    }
+
+    .main-body-wrapper {
+      background-color: #EEEEEE;
+      height: 89vh;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
   }
 
 }

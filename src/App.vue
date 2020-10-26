@@ -14,8 +14,8 @@ export default {
 @import './assets/global.css';
 
 ::-webkit-scrollbar {
-  width: 0px;
-  background-color: #d8d8d8;
+  width: 0;
+  background-color: #ffffff;
 }
 
 /* 滚动槽 */

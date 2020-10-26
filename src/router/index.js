@@ -9,7 +9,6 @@ import Opensource from '../views/front/Opensource'
 import BackLayout from '../views/BackLayout'
 import Dashboard from '../views/back/Dashboard'
 import Write from '../views/back/Write'
-import Login from '@/views/Login'
 import { getToken } from '@/utils/auth'
 import BasicConfig from '@/views/back/BasicConfig'
 import SystemSetting from '@/views/back/SystemSetting'
@@ -20,6 +19,10 @@ import NewBlog from '@/views/back/NewBlog'
 import BlogTag from '@/views/back/BlogTag'
 import BlogDetail from '@/views/front/BlogDetail'
 import Search from '@/views/front/Search'
+import NewOpensource from '@/views/back/NewOpensource'
+import BackendLogin from '@/views/AdminLogin'
+import Login from '@/views/front/Login'
+import ProjectDetail from '@/views/front/ProjectDetail'
 
 Vue.use(VueRouter)
 
@@ -50,6 +53,12 @@ const routes = [
         meta: { title: '博客' }
       },
       {
+        path: 'projectDetail/:projId',
+        name: 'ProjectDetail',
+        component: ProjectDetail,
+        meta: { title: '博客' }
+      },
+      {
         path: 'video',
         name: 'Video',
         component: Video,
@@ -73,6 +82,12 @@ const routes = [
         meta: { title: '搜索' }
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: { title: '注册登录' }
   },
   {
     path: '/admin',
@@ -130,32 +145,42 @@ const routes = [
         name: 'OpenSource',
         component: OpenSource,
         meta: { title: '开源项目' }
+      },
+      {
+        path: 'newOpensource',
+        name: 'NewOpensource',
+        component: NewOpensource,
+        meta: { title: '新增项目' }
       }
     ]
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
+    path: '/backendLogin',
+    name: 'BackendLogin',
+    component: BackendLogin,
     meta: { title: '后台登录' }
   }
+
 ]
 
 const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.fullPath.indexOf('/admin') !== -1) {
-    // 访问后台，校验token
-    if (getToken() == null || getToken() === '') {
-      console.log(getToken())
-      // 没有token跳转登录页
-      next('/login')
-    }
-  }
-  next()
+  // 设置title
   if (to.meta.title) {
     document.title = '大熊实验室-' + to.meta.title
+  }
+  // 路径包含admin是访问管理后台
+  if (to.fullPath.indexOf('/admin') !== -1) {
+    if (getToken() == null || getToken() === '') {
+      // 没有token跳转登录页
+      next('/backendLogin')
+    } else {
+      next()
+    }
+  } else {
+    next()
   }
 })
 

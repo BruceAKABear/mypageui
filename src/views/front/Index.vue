@@ -1,19 +1,25 @@
 <template>
   <div class="content">
-    <div class="background-img" :style="{'backgroundImage': 'url(' + indexData.backgroundImg + ')','background-size':'100% 100%'}"></div>
+    <div class="background-img"
+         :style="{'backgroundImage': 'url(' + indexData.backgroundImg + ')','background-size':'100% 100%'}"
+    ></div>
     <div class="index-box">
-      <div class="index-slogan">
-        <span>{{ indexData.slogan }}</span>
-      </div>
-      <div class="index-time">
-        <span>{{ date }}</span>
-        <span class="index-time-time">{{ time }}</span>
-      </div>
-      <div class="index-search-box">
-        <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
-                  class="local-input" ref="indexInput"></el-input>
-        <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
-      </div>
+      <el-row>
+        <el-col :span="24">
+          <div class="index-slogan">
+            <span>{{ indexData.slogan }}</span>
+          </div>
+          <div class="index-time">
+            <span>{{ date }}</span>
+            <span class="index-time-time">{{ time }}</span>
+          </div>
+          <div class="index-search-box">
+            <el-input v-model="keyword" placeholder="请输入内容" clearable @keyup.enter.native="doSearch"
+                      class="local-input" ref="indexInput"></el-input>
+            <el-button slot="append" type="primary" @click="doSearch">搜索</el-button>
+          </div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -124,7 +130,6 @@ export default {
 }
 
 .index-box {
-  width: 550px;
   position: absolute;
   top: 50%;
   left: 50%;

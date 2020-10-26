@@ -131,6 +131,7 @@ export default {
         typeId: typeId
       }).then(res => {
         if (res.status) {
+          this.$message.success('分类删除成功')
           // 删除成功
           this.doPageQuery()
         } else {
@@ -147,7 +148,9 @@ export default {
 
 <style lang="scss" scoped>
 .main-box {
-  margin-top: 20px;
+  background-color: white;
+  height: 100%;
+  padding: 5px;
 
   .button-box {
     margin-bottom: 10px;

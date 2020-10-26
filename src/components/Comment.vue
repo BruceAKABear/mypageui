@@ -2,30 +2,31 @@
 <template>
   <div class="container">
     <!--评论头部-->
-    <div class="comment-header-box">
-      <el-input class="gray-bg-input"
-                v-model="headerCommentContent"
-                type="textarea"
-                :rows="3"
-                autofocus
-                placeholder="写下你的评论"
-                :maxlength="maxWords"
-                show-word-limit
-                @focus="headerInputFocus"
+    <div class="header-box">
+      <el-input
+        v-model="headerCommentContent"
+        type="textarea"
+        :rows="3"
+        autofocus
+        placeholder="写下你的评论"
+        :maxlength="maxWords"
+        show-word-limit
+        @focus="headerInputFocus"
       >
       </el-input>
-      <div >
-        <el-collapse-transition>
-          <div class="btn-group-box" v-if="headerButtonShow">
-            <span class="cancel" @click="headerCommentCancel">取消</span>
-            <el-button class="btn" type="success" @click="commitComment">确定</el-button>
+      <div class="header-btn-transition-box">
+        <transition name="el-fade-in">
+          <div class="btn-group-box" v-show="allowCommentFlag">
+            <span @click="headerCommentCancel">取消</span>
+            <el-button type="success" @click="commitComment" size="small">确定</el-button>
           </div>
-        </el-collapse-transition>
+        </transition>
       </div>
     </div>
+    <!--评论体-->
     <div class="comment" v-for="(item,index) in comments" :key="index">
       <div class="info">
-        <img class="avatar" :src="item.fromUserAvatar" width="36" height="36"/>
+        <img class="avatar" :src="item.fromUserAvatar" width="36" height="36" alt="用户头像"/>
         <div class="right">
           <div class="name">{{ item.fromUserName }}</div>
           <div class="date">{{ item.createTime }}</div>
@@ -61,18 +62,21 @@
           <i class="el-icon-edit"></i>
           <span class="add-comment">添加新评论</span>
         </div>
-        <transition name="fade">
+        <transition name="el-fade-in">
           <div class="input-wrapper" v-if="showItemId === item.id">
-            <el-input class="gray-bg-input"
-                      v-model="inputComment"
-                      type="textarea"
-                      :rows="3"
-                      autofocus
-                      :placeholder="replyUser">
+            <el-input
+              v-model="inputComment"
+              type="textarea"
+              :rows="3"
+              autofocus
+              placeholder="写下你的评论"
+              :maxlength="maxWords"
+              show-word-limit
+            >
             </el-input>
-            <div class="btn-control">
-              <span class="cancel" @click="cancel">取消</span>
-              <el-button class="btn" type="success" round @click="commitComment(item)">确定</el-button>
+            <div class="btn-group-box">
+              <span>取消</span>
+              <el-button type="success" @click="commitComment(item)" size="small">确定</el-button>
             </div>
           </div>
         </transition>
@@ -82,7 +86,6 @@
 </template>
 
 <script>
-
 import Vue from 'vue'
 
 export default {
@@ -97,6 +100,12 @@ export default {
       default: 200
     }
   },
+  watch: {
+    allowComment (newV, oldV) {
+      console.warn(newV)
+      this.allowCommentFlag = newV
+    }
+  },
   components: {},
   data () {
     return {
@@ -104,16 +113,24 @@ export default {
       showItemId: '',
       replyUser: '',
       headerButtonShow: false,
-      headerCommentContent: ''
+      headerCommentContent: '',
+      allowCommentFlag: this.allowComment
     }
   },
   computed: {},
   methods: {
+
+    /**
+     * 头部评论点击取消
+     */
+    headerCommentCancel () {
+      this.allowCommentFlag = false
+      this.headerCommentContent = ''
+    },
     /**
      * 点赞
      */
     likeClick (item) {
-      console.log('=========', item)
       if (item.isLike === null) {
         Vue.$set(item, 'isLike', true)
         item.likeCount++
@@ -126,15 +143,6 @@ export default {
         item.isLike = !item.isLike
       }
     },
-
-    /**
-     * 头部评论点击取消
-     */
-    headerCommentCancel () {
-      this.headerButtonShow = false
-      this.headerCommentContent = ''
-    },
-
     /**
      * 提交评论
      */
@@ -156,7 +164,6 @@ export default {
     showCommentInput (item, reply) {
       if (reply) {
         this.replyUser = '回复 ' + reply.fromUserName
-        // this.inputComment = '@' + reply.fromUserName + ' '
       } else {
         this.inputComment = ''
       }
@@ -166,7 +173,7 @@ export default {
      * 头部输入框获取到焦点，此时去显示按钮
      */
     headerInputFocus () {
-      this.headerButtonShow = true
+      this.$emit('commentTriggered')
     }
   },
   created () {
@@ -179,35 +186,53 @@ export default {
 
 @import "../../public/conment";
 
+.btn-group-box {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  span {
+    color: #9E9E9E;
+    cursor: pointer;
+  }
+
+  .el-button {
+    margin-left: 20px;
+  }
+}
+
 .container {
-  padding: 0 10px;
   box-sizing: border-box;
 
-  .comment-header-box {
+  .header-box {
     margin-bottom: 5px;
 
-    .btn-group-box {
+    .header-btn-transition-box {
 
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding-top: 10px;
-
-      .cancel {
-        font-size: 16px;
-        color: $text-normal;
-        margin-right: 20px;
-        cursor: pointer;
-
-        &:hover {
-          color: $text-333;
-        }
-      }
-
-      .confirm {
-        font-size: 16px;
-      }
     }
+
+    //.btn-group-box {
+    //
+    //  display: flex;
+    //  justify-content: flex-end;
+    //  align-items: center;
+    //
+    //  .cancel {
+    //    font-size: 16px;
+    //    color: $text-normal;
+    //    margin-right: 20px;
+    //    cursor: pointer;
+    //
+    //    &:hover {
+    //      color: $text-333;
+    //    }
+    //  }
+    //
+    //  .confirm {
+    //    font-size: 16px;
+    //  }
+    //}
 
   }
 
